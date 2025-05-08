@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shlokas</title>
+    <style>
+        body{
+            margin: 0;
+            background-color: rgba(224, 188, 57, 0.831);
+        }
+        .geeta{
+          margin: 50px 200px;
+          display: flex;
+          background-color: white;
+          border: 2px solid black;
+          padding: 50px;
+          border-radius: 30px;
+          justify-content: center;
+          gap: 80px;
+          align-items: center;
+        }
+        .geeta-img img{
+          height: 400px;
+          border-radius: 10px;
+          width: auto;
+        }
+        .geeta button{
+          padding: 12px 20px;
+          border-radius: 10px;
+          border: none;
+          background-color: rgb(96 53 53);
+        }
+        .geeta a{
+          color: white;
+        }
+        .shlokas{
+          display: flex;
+          margin: 100px auto;
+          flex-wrap: wrap;
+          gap: 30px;
+        }
+        .shlok{
+          padding: 30px;
+          margin: auto;
+          background-color: white;
+          border: 2px solid black;
+          height: auto;
+          width: 720px;
+        }
+        @media (max-width:1150px) {
+          .geeta-img img{
+            height: 300px;
+          }
+          .geeta{
+            margin: 50px 150px;
+          }
+        }
+        @media (max-width:1150px) {
+          .geeta-img img{
+            height: 280px;
+          }
+          .geeta{
+            margin: 50px 100px;
+          }
+        }
+        @media (max-width:850px) {
+          .geeta-img img{
+            height: 240px;
+          }
+          .geeta{
+            margin: 50px 80px;
+          }
+          .text h2{
+            font-size: 20px;
+          }
+          .text h4{
+            font-size: 14px;
+          }
+        }
+        @media (max-width:850px) {
+          .geeta-img{
+            height: 320px;
+            width: auto;
+          }
+          .geeta-img img{
+            height: 320px;
+            width: auto;
+            object-fit: cover;
+          }
+          .geeta{
+            margin: 50px 80px;
+            flex-direction: column-reverse;
+            text-align: center;
+
+          }
+          .text h2{
+            font-size: 20px;
+          }
+          .text h4{
+            font-size: 14px;
+          }
+        }
+        @media (max-width:850px) {
+
+          .geeta{
+            margin: 50px 60px;
+            gap: 15px;
+          }
+          .geeta-img img{
+            height: 280px;
+            width: auto;
+            object-fit: cover;
+          }
+        }
+        @media (max-width:420px) {
+
+          .geeta{
+            margin: 50px 20px;
+            gap: 15px;
+          }
+          .geeta-img img{
+            height: 280px;
+            width: auto;
+            object-fit: cover;
+          }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs')  %>
+
+        
+    <div class="geeta">
+      <div class="text">
+            <h2>Immerse yourself in the timeless wisdom of the Bhagavad Geeta</h2>
+        <h4>Discover powerful shlokas that illuminate the path to spirituality, inner peace, and self-realization. Whether you seek guidance, strength, or a deeper understanding of life’s purpose, the Geeta’s teachings are just a click away — ready to inspire and transform your journey.
+        </h4>
+        <button><a href="/bhagvat-geeta/1">Click Here</a></button>
+      </div>
+      <div class="geeta-img">
+        <img src="/geeta.jpg" alt="">
+      </div>
+    </div>
+    
+    <div class="shlokas">
+      <% shlokaData.forEach(element => { %>
+        <div class="shlok">
+          <h2><%= element.shlok %></h2>
+          <h4><%= element.english %></h4>
+          <h4><%= element.hindi %></h4>
+        </div>
+      <% }); %>
+    </div>
+    
+    
+    <%- include('../partials/footer.ejs')  %>
+
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 | Shlok</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+    .chakra{
+      width: auto;
+      animation: rotate infinite 20s linear;
+    }
+    
+  </style>
+</head>
+<body class="bg-gradient-to-b from-yellow-100 to-orange-200 flex items-center justify-center min-h-screen p-6">
+
+  <div class="text-center max-w-xl w-full">
+    <img src="/Chakra.svg" alt="" class="chakra mx-auto mb-6" />
+    
+    <h1 class="text-6xl md:text-7xl font-bold text-red-600 mb-4">404</h1>
+    <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-2">Page Not Found</h2>
+    <p class="text-lg text-gray-700 mb-6">माफ कीजिए, यह पृष्ठ उपलब्ध नहीं है।</p>
+    
+    <p class="text-md md:text-lg font-medium text-green-800 bg-green-100 inline-block px-4 py-2 rounded-full shadow-sm mb-8">
+      Aapka Din Shubh Rahe 🙏
+    </p>
+    
+    <div>
+      <a href="/" class="inline-block mt-4 px-6 py-3 text-white bg-red-600 hover:bg-red-700 rounded-lg transition">
+        Go to Home
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

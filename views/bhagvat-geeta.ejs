@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhagvat Geeta / <%=id%></title>
+    
+    <style>
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        body{
+            margin: 0;
+        }
+
+        .verseCard {
+            font-family: sans-serif;
+            display: none; /* Initially hide all */
+            flex-direction: column;
+            border: 2px solid black;
+            background-color: white;
+            padding: 30px 60px;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 40px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .verseCard.active {
+            display: flex; /* Show only the active one */
+        }
+
+        .verseCard p {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .verseCard h1 {
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            
+        }
+        
+        .btn:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+
+        .shloka-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 10px;
+            margin-top: 20px;
+        }
+
+        .shloka-btn {
+            padding: 5px 15px;
+            margin: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        .shloka-btn.active {
+            background-color: black;
+            color: white;
+        }
+        .change-btn{
+            padding: 5px 15px;
+            margin: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+            background-color: white;
+        }
+    </style>
+</head>
+<body data-barba="wrapper">
+
+    <%-include('../partials/navbar.ejs') %>
+    
+    <div data-barba="container" data-barba-namespace="bhagvatgeeta">
+
+    <div class="container">
+        <% chapterData.forEach((element, index) => { %>
+            <div class="verseCard" id="shloka-<%= index %>">
+            <h1>Shloka <%= index + 1 %></h1>
+            <h2><%= element.verse %></h2>
+            <p><%= element.translation %></p>
+            <p><%= element.commentaries %></p>
+        </div>
+    <% }); %>
+
+    <div class="controls">
+        <button class="btn" id="prevBtn" onclick="prevShloka()">Previous</button>
+        <button class="btn" id="nextBtn" onclick="nextShloka()">Next</button>
+    </div>
+<div class="shloka-buttons">
+    <% 
+        const nextId = parseInt(id) + 1;
+        const prevId = parseInt(id) - 1;
+    %>
+
+    <% if (prevId >= 1) { %>
+        <a href="/bhagvat-geeta/<%= prevId %>"><button class="change-btn"></button></a>
+    <% } %>
+
+    <% chapterData.forEach((_, index) => { %>
+        <button class="shloka-btn" onclick="showShloka(<%= index %>)"><%= index + 1 %></button>
+    <% }); %>
+
+    <% if (nextId <= 18) { %>
+        <a href="/bhagvat-geeta/<%= nextId %>"><button class="change-btn">>></button></a>
+    <% } %>
+</div>
+    </div>
+
+<%-include('../partials/footer.ejs') %>
+
+</div>
+
+
+<script>
+    let currentShloka = 0;
+    const totalShlokas = <%= chapterData.length %>;
+
+    function showShloka(index) {
+        document.querySelectorAll('.verseCard').forEach(el => el.classList.remove('active'));
+        document.getElementById(`shloka-${index}`).classList.add('active');
+
+        document.querySelectorAll('.shloka-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.shloka-btn')[index].classList.add('active');
+        
+        currentShloka = index;
+        updateButtons();
+    }
+
+    function nextShloka() {
+        if (currentShloka < totalShlokas - 1) {
+            showShloka(currentShloka + 1);
+        }
+    }
+
+    function prevShloka() {
+        if (currentShloka > 0) {
+            showShloka(currentShloka - 1);
+        }
+    }
+
+    function updateButtons() {
+        document.getElementById('prevBtn').disabled = currentShloka === 0;
+        document.getElementById('nextBtn').disabled = currentShloka === totalShlokas - 1;
+    }
+
+    // Initialize first shloka
+    showShloka(0);
+</script>
+
+</body>
+</html>

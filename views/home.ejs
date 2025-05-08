@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shlok</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../app.css">
+    <link rel="icon" type="image/png" href="/Chakra.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: cornsilk;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Chakra Animation */
+        .base {
+            width: 320px;
+            height: 320px;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 0.3s ease;
+        }
+
+        .circ {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 10px solid rgb(91, 82, 223);
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 0.3s ease;
+        }
+
+        .base .circ:nth-child(1) {
+            transform: translate(75px, 0);
+        }
+
+        .base .circ:nth-child(2) {
+            transform: translate(0, 75px);
+        }
+
+        .base .circ:nth-child(3) {
+            transform: translate(-75px, 0);
+        }
+
+        .base .circ:nth-child(4) {
+            transform: translate(0, -75px);
+        }
+
+        .base .circ:nth-child(5) {
+            transform: translate(53.0325px, 53.0325px);
+        }
+
+        .base .circ:nth-child(6) {
+            transform: translate(53.0325px, -53.0325px);
+        }
+
+        .base .circ:nth-child(7) {
+            transform: translate(-53.0325px, 53.0325px);
+        }
+
+        .base .circ:nth-child(8) {
+            transform: translate(-53.0325px, -53.0325px);
+        }
+
+        .base:nth-child(2) {
+            transform: rotate(36deg);
+            animation: turn-2 3s ease-in-out infinite alternate;
+        }
+
+        .base:nth-child(3) {
+            transform: rotate(72deg);
+            animation: turn-3 8s ease-in-out infinite alternate;
+        }
+
+        .base:nth-child(4) {
+            transform: rotate(108deg);
+            animation: turn-4 10s ease-in-out infinite alternate;
+        }
+
+        .base:nth-child(5) {
+            transform: rotate(144deg);
+            animation: turn-5 20s ease-in-out infinite alternate;
+        }
+
+        .base:nth-child(6) {
+            transform: rotate(180deg);
+            animation: turn-6 24s ease-in-out infinite alternate;
+        }
+
+        .base:nth-child(7) {
+            transform: rotate(216deg);
+            animation: turn-7 28s ease-in-out infinite alternate;
+        }
+
+        .base:nth-child(8) {
+            transform: rotate(252deg);
+            animation: turn-8 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes turn-2 {
+            from { transform: rotate(0); }
+            to { transform: rotate(45deg); }
+        }
+
+        @keyframes turn-3 {
+            from { transform: rotate(0); }
+            to { transform: rotate(90deg); }
+        }
+
+        @keyframes turn-4 {
+            from { transform: rotate(0); }
+            to { transform: rotate(135deg); }
+        }
+
+        @keyframes turn-5 {
+            from { transform: rotate(0); }
+            to { transform: rotate(180deg); }
+        }
+
+        @keyframes turn-6 {
+            from { transform: rotate(0); }
+            to { transform: rotate(225deg); }
+        }
+
+        @keyframes turn-7 {
+            from { transform: rotate(0); }
+            to { transform: rotate(270deg); }
+        }
+
+        @keyframes turn-8 {
+            from { transform: rotate(0); }
+            to { transform: rotate(315deg); }
+        }
+
+        /* Container and Layout */
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Meditation Image */
+        .meditation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .meditation img {
+            position: relative;
+            z-index: 3;
+            max-width: 700px;
+            width: 90%;
+            margin-top: 200px;
+            animation: fadeinLoad 1s ease-out;
+        }
+
+        .bigChakra {
+            animation: fadeinLoad 20s;
+        }
+
+        @keyframes fadeinLoad {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Hero Text */
+        .hero-text {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            animation: fadeinLoad 3s;
+            font-size: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 80px auto 0;
+            padding: 0 20px;
+        }
+
+        .hero-text h2 {
+            animation: fadeinLoad 6s;
+            color: slategray;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-para {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .hero-para h3 {
+            animation: fadeinLoad 6s;
+            color: rgb(73, 151, 170);
+            line-height: 1.8;
+            max-width: 800px;
+            text-align: center;
+            padding: 0 20px;
+            font-size: 1.2rem;
+        }
+
+        /* Content Sections */
+        .aarti-section,
+        .bhajan-section,
+        .shlok-section,
+        .horoscope-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 70px;
+            padding: 80px 5%;
+            line-height: 2;
+            border: 2px solid black;
+            transition: all 0.3s ease;
+        }
+
+        .aarti-section {
+            margin-top: 100px;
+        }
+
+        .bhajan-section,
+        .shlok-section,
+        .horoscope-section {
+            border-top: 0;
+        }
+
+        .horoscope-section {
+            border-bottom: 0;
+        }
+
+        .aarti-section img,
+        .bhajan-section img {
+            height: auto;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .aarti-section img:hover,
+        .bhajan-section img:hover {
+            transform: scale(1.03);
+        }
+
+        .aarti-text {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .aarti-text h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .aarti-text h3 {
+            font-size: 1rem;
+            font-weight: normal;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Buttons */
+        .aarti-section button,
+        .bhajan-section button,
+        .shlok-section button,
+        .horoscope-section button {
+            padding: 15px 30px;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .aarti-section button {
+            background-color: rgb(239, 126, 33);
+        }
+
+        .bhajan-section button {
+            background-color: rgb(0, 78, 123);
+        }
+
+        .shlok-section button {
+            background-color: rgb(109, 54, 54);
+        }
+
+        .horoscope-section button {
+            background-color: rgb(29, 143, 65);
+        }
+
+        .aarti-section button:hover,
+        .bhajan-section button:hover,
+        .shlok-section button:hover,
+        .horoscope-section button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .aarti-section a,
+        .bhajan-section a,
+        .shlok-section a,
+        .horoscope-section a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Shloks */
+        .shloks {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .shloks div {
+            padding: 30px 20px;
+            width: 100%;
+            font-size: medium;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .shloks div:nth-child(1) {
+            background-color: rgb(135, 131, 83);
+        }
+
+        .shloks div:nth-child(2) {
+            background-color: rgb(83, 127, 135);
+        }
+
+        .shloks div:nth-child(3) {
+            background-color: rgb(220, 133, 20);
+        }
+
+        .shloks div:hover {
+            transform: translateX(-8px);
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Horoscope */
+        .horos {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .horos div {
+            border: 2px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .horos div:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .horos h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 1200px) {
+            .aarti-section,
+            .bhajan-section,
+            .shlok-section,
+            .horoscope-section {
+                padding: 60px 4%;
+                gap: 40px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-para h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .aarti-section,
+            .bhajan-section,
+            .shlok-section,
+            .horoscope-section {
+                flex-direction: column;
+                padding: 50px 4%;
+                gap: 30px;
+            }
+            
+            .bhajan-section {
+                flex-direction: column-reverse;
+            }
+            
+            .aarti-section {
+                margin-top: 200px;
+            }
+            
+            .meditation img {
+                margin-top: 200px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+                margin-top: 60px;
+            }
+            
+            .base {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .circ {
+                width: 280px;
+                height: 280px;
+                border-width: 8px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 1.8rem;
+                margin-top: 50px;
+            }
+            
+            .hero-para h3 {
+                font-size: 1rem;
+                /* margin-top: 20px; */
+            }
+            
+            .meditation img {
+                margin-top: 100px;
+                max-width: 500px;
+            }
+            
+            
+            .aarti-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .base {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .circ {
+                width: 240px;
+                height: 240px;
+                border-width: 7px;
+            }
+            
+            .base .circ:nth-child(1) {
+                transform: translate(60px, 0);
+            }
+            
+            .base .circ:nth-child(2) {
+                transform: translate(0, 60px);
+            }
+            
+            .base .circ:nth-child(3) {
+                transform: translate(-60px, 0);
+            }
+            
+            .base .circ:nth-child(4) {
+                transform: translate(0, -60px);
+            }
+            
+            .base .circ:nth-child(5) {
+                transform: translate(42px, 42px);
+            }
+            
+            .base .circ:nth-child(6) {
+                transform: translate(42px, -42px);
+            }
+            
+            .base .circ:nth-child(7) {
+                transform: translate(-42px, 42px);
+            }
+            
+            .base .circ:nth-child(8) {
+                transform: translate(-42px, -42px);
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 1.5rem;
+                margin-top: 40px;
+            }
+            
+            .hero-para h3 {
+                font-size: 0.9rem;
+            }
+            
+            .meditation img {
+                /* margin-top: 450px; */
+                max-width: 400px;
+            }
+            
+            .aarti-section {
+                margin-top: 50px;
+                padding: 40px 4%;
+            }
+            
+            .bhajan-section,
+            .shlok-section,
+            .horoscope-section {
+                padding: 40px 4%;
+            }
+            
+            .aarti-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            .aarti-text h3 {
+                font-size: 0.9rem;
+                /* line-height: 1.6; */
+            }
+            
+            .shloks div {
+                padding: 20px 15px;
+            }
+            
+            .base {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .circ {
+                width: 200px;
+                height: 200px;
+                border-width: 6px;
+            }
+            
+            .base .circ:nth-child(1) {
+                transform: translate(50px, 0);
+            }
+            
+            .base .circ:nth-child(2) {
+                transform: translate(0, 50px);
+            }
+            
+            .base .circ:nth-child(3) {
+                transform: translate(-50px, 0);
+            }
+            
+            .base .circ:nth-child(4) {
+                transform: translate(0, -50px);
+            }
+            
+            .base .circ:nth-child(5) {
+                transform: translate(35px, 35px);
+            }
+            
+            .base .circ:nth-child(6) {
+                transform: translate(35px, -35px);
+            }
+            
+            .base .circ:nth-child(7) {
+                transform: translate(-35px, 35px);
+            }
+            
+            .base .circ:nth-child(8) {
+                transform: translate(-35px, -35px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.3rem;
+                margin-top: 30px;
+            }
+            
+            .hero-para h3 {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+            
+            .meditation img {
+                margin-top: 50px;
+                max-width: 400px;
+            }
+            
+            .aarti-section {
+                margin-top: 450px;
+                padding: 30px 4%;
+            }
+            
+            .bhajan-section,
+            .shlok-section,
+            .horoscope-section {
+                padding: 30px 4%;
+            }
+            
+            .aarti-section button,
+            .bhajan-section button,
+            .shlok-section button,
+            .horoscope-section button {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .base {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .circ {
+                width: 180px;
+                height: 180px;
+                border-width: 5px;
+            }
+            
+            .base .circ:nth-child(1) {
+                transform: translate(45px, 0);
+            }
+            
+            .base .circ:nth-child(2) {
+                transform: translate(0, 45px);
+            }
+            
+            .base .circ:nth-child(3) {
+                transform: translate(-45px, 0);
+            }
+            
+            .base .circ:nth-child(4) {
+                transform: translate(0, -45px);
+            }
+            
+            .base .circ:nth-child(5) {
+                transform: translate(32px, 32px);
+            }
+            
+            .base .circ:nth-child(6) {
+                transform: translate(32px, -32px);
+            }
+            
+            .base .circ:nth-child(7) {
+                transform: translate(-32px, 32px);
+            }
+            
+            .base .circ:nth-child(8) {
+                transform: translate(-32px, -32px);
+            }
+        }
+
+        @media screen and (max-width: 380px) {
+            .hero-text h1 {
+                font-size: 1.1rem;
+                margin-top: 70px;
+            }
+            
+            .hero-para h3 {
+                font-size: 0.8rem;
+                margin-top: 0;
+            }
+            .container{
+              height: 400px;
+            }
+            
+            .meditation img {
+                margin-top: 50px;
+                max-width: 300px;
+            }
+            
+            .aarti-section {
+                margin-top: 50px;
+                padding: 25px 4%;
+            }
+            
+            .bhajan-section,
+            .shlok-section,
+            .horoscope-section {
+                padding: 25px 4%;
+            }
+            
+            .aarti-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .aarti-text h3 {
+                font-size: 0.8rem;
+            }
+            
+            .shloks div {
+                padding: 15px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .base {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .circ {
+                width: 160px;
+                height: 160px;
+                border-width: 4px;
+            }
+            
+            .base .circ:nth-child(1) {
+                transform: translate(40px, 0);
+            }
+            
+            .base .circ:nth-child(2) {
+                transform: translate(0, 40px);
+            }
+            
+            .base .circ:nth-child(3) {
+                transform: translate(-40px, 0);
+            }
+            
+            .base .circ:nth-child(4) {
+                transform: translate(0, -40px);
+            }
+            
+            /* Simplify diagonal circles on smallest screens */
+            .base .circ:nth-child(5),
+            .base .circ:nth-child(6),
+            .base .circ:nth-child(7),
+            .base .circ:nth-child(8) {
+                transform: translate(0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="home">
+        <%- include('../partials/navbar.ejs') %>
+        
+        <div class="hero-text">
+            <h1>शुभम् करोति कल्याणम् आरोग्यम् धनसंपदा।</h1>
+        </div>
+
+        <div class="container">
+            <div class="bigChakra">
+                <div class="base">
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                </div>
+                <div class="base">
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                </div>
+                <div class="base">
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                </div>
+                <div class="base">
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                </div>
+                <div class="base">
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                </div>
+                <div class="base">
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                </div>
+                <div class="base">
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                </div>
+                <div class="base">
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                    <div class="circ"></div>
+                </div>
+            </div>
+
+            <div class="meditation">
+                <img src="/shivmedi.png" alt="Meditation Image">
+            </div>
+        </div>
+        
+        <div class="hero-para">
+            <h3>Immerse Yourself in Devotion Online with a Seamless and Interactive Experience Tailored for Your Spiritual Journey</h3>
+        </div>
+                
+        <div class="aarti-section">
+            <img src="https://images.pexels.com/photos/7919685/pexels-photo-7919685.jpeg?cs=srgb&dl=pexels-shootcasechronicles-7919685.jpg&fm=jpg" alt="Aarti Image">
+            <div class="aarti-text">
+                <h1>Immerse Yourself In Aartis Like Never Before</h1>
+                <h3>Discover Live Aartis, Soulful Melodies, and Timeless Devotion in One Place. <br>
+                Would you like more emphasis on a particular feature, such as live streaming or the spiritual connection? <br>
+                Celebrate the essence of devotion with daily aartis from renowned temples, harmonized chants that soothe the soul, and the opportunity to connect with the divine anytime, anywhere. Dive into the rhythmic beats, sacred verses, and spiritual ambiance that bring you closer to the heart of worship.</h3>
+                <button><a href="/aarti">Explore Aartis Here</a></button>
+            </div>
+        </div>
+        
+        <div class="bhajan-section">
+            <div class="aarti-text">
+                <h1>Feel the Divine Through Bhajans</h1>
+                <h3>Experience the magic of devotion with soul-touching bhajans that resonate with every emotion. Let the harmonies guide you to peace, the lyrics awaken your faith, and the melodies deepen your connection with the divine.
+
+                Discover curated collections for every mood and moment, from tranquil meditative chants to joyous celebrations of devotion. Embark on a spiritual journey where every note brings you closer to the essence of bhakti.</h3>
+                <button><a href="/bhajan">Explore Bhajans Here</a></button>
+            </div>
+            <img src="https://media.istockphoto.com/id/1937471501/photo/hindu-monk-singing-at-the-sitaram-ji-ka-temple-in-jaipur-india.jpg?s=612x612&w=0&k=20&c=WvYnwvQ6FoDj0CFRPb70AkGJldeeuEdY9HYHvaO_8gk=" alt="Bhajan Image">
+        </div>
+
+        <div class="shlok-section">
+            <div class="shloks">
+                <div id="shlok1">ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं। भर्गो देवस्य धीमहि। धियो यो नः प्रचोदयात्।</div>
+                <div id="shlok2">ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योरमुक्तियात् स्वाहा।</div>
+                <div id="shlok3">दुर्गे दुर्गा मही देवी महिषासुरमर्दिनी। दुर्गे दुर्गा मही देवी महिषासुरमर्दिनी।</div>
+            </div>
+            <div class="aarti-text">
+                <h1>Experience the Timeless Wisdom of Shlokas</h1>
+                <h3>Discover the beauty of ancient verses that echo with divine knowledge and profound spirituality. Each shloka unfolds a path to enlightenment, guiding you through sacred teachings and inner peace.
+                
+                Immerse yourself in a collection of shlokas that transcend time, offering insight, solace, and a deeper connection to the divine. Let the powerful verses inspire, heal, and elevate your spiritual journey like never before.</h3>
+                <button><a href="/shlokas">Explore Shlokas Here</a></button>
+            </div>
+        </div>
+        
+        <div class="horoscope-section">
+            <div class="aarti-text">
+                <h1>Discover Your Destiny</h1>
+                <h3>Unlock the mysteries of the stars and find out what the universe has planned for you! Our daily horoscope offers insights into your love life, career, health, and personal growth. Stay one step ahead with tailored guidance based on your zodiac sign.</h3>
+                <button><a href="/horoscope">Explore Horoscope Here</a></button>
+            </div>
+            <div class="horos">
+                <div>
+                    <h3>Virgo / कन्या</h3> 
+                    Now isn't the time to prove to people that you're the boss, Virgo. They would surely become defensive. You're much better off taking a sensitive, nurturing approach on a day like today. Focus your fire internally and use it to drive your own engine. Don't run over anyone else in the process or try to run their engine for them.
+                </div>
+                <div>
+                    <h3>Leo / सिंह</h3> 
+                    Sink into a soft, gentle rhythm and you flow with everything around you, Leo. Ease your mind about any worries. Your subconscious knows the way. The key today is sensitivity and intuition - your specialties. You don't need to be concerned about a thing. Everything will work out fine. Don't worry that you haven't prepared enough. Give yourself a break and relax.
+                </div>
+                <div>
+                    <h3>Gemini / मिथुन</h3> 
+                    You may not feel like you're in tune with your situation today, Gemini. Try not to get too pushy with your opinions about how things should be done. Honor other people's perspectives and approaches. It may be hard for others to commit to things the same way you do. Their methods may be different, but that doesn't mean they are necessarily any better or worse.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../partials/footer.ejs') %>
+    
+    <script>
+        const shloks = [
+            "हम उस सृजनहार की महिमा का चिंतन करते हैं, जो ब्रह्मांड का निर्माता है, जो ज्ञान और प्रकाश का प्रतीक है, और अंधकार को हरने वाले हैं।", 
+            "हम त्रयम्बक भगवान की उपासना करते हैं, जो बंधनों से मुक्त कर अमरत्व की ओर ले जाते हैं।",
+            "हे दुर्गा, हे देवी, हे महिषासुर मर्दिनी! आप ही सभी दुर्गम कार्यों को आसान करने वाली हैं।"
+        ];
+        
+        const shlok1 = document.querySelector('#shlok1');
+        const shlok2 = document.querySelector('#shlok2');
+        const shlok3 = document.querySelector('#shlok3');
+        
+        shlok1.addEventListener('mouseenter', function() {
+            shlok1.innerHTML = `<p>${shloks[0]}</p>`;
+        });
+        
+        shlok1.addEventListener('mouseleave', function() {
+            shlok1.innerHTML = 'ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं। भर्गो देवस्य धीमहि। धियो यो नः प्रचोदयात्।';
+        });
+        
+        shlok2.addEventListener('mouseenter', function() {
+            shlok2.innerHTML = `<p>${shloks[1]}</p>`;
+        });
+        
+        shlok2.addEventListener('mouseleave', function() {
+            shlok2.innerHTML = 'ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्। उर्वारुकमिव बन्धनान्मृत्योरमुक्तियात् स्वाहा।';
+        });
+        
+        shlok3.addEventListener('mouseenter', function() {
+            shlok3.innerHTML = `<p>${shloks[2]}</p>`;
+        });
+        
+        shlok3.addEventListener('mouseleave', function() {
+            shlok3.innerHTML = 'दुर्गे दुर्गा मही देवी महिषासुरमर्दिनी। दुर्गे दुर्गा मही देवी महिषासुरमर्दिनी।';
+        });
+        
+        // Add smooth scrolling for better user experience
+        document.querySelectorAll('a[href^="/"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // Add smooth scroll behavior if needed
+                const href = this.getAttribute('href');
+                if (href.startsWith('/') && !href.includes('#')) {
+                    // This is for page navigation, no need to prevent default
+                } else if (href.includes('#')) {
+                    e.preventDefault();
+                    const targetId = href.split('#')[1];
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Add responsive behavior for chakra animation
+        function adjustChakraSize() {
+            const windowWidth = window.innerWidth;
+            const bases = document.querySelectorAll('.base');
+            const circs = document.querySelectorAll('.circ');
+            
+            // This function can be expanded to dynamically adjust chakra size based on screen width
+            // Currently handled by CSS media queries
+        }
+        
+        // Call on load and resize
+        window.addEventListener('load', adjustChakraSize);
+        window.addEventListener('resize', adjustChakraSize);
+    </script>
+</body>
+</html>
+
+<Actions>
+  <Action name="Add dark mode toggle" description="Implement a dark/light theme toggle for better accessibility" />
+  <Action name="Optimize images" description="Add lazy loading for images to improve page load speed" />
+  <Action name="Add animation presets" description="Create animation presets for smoother transitions between sections" />
+  <Action name="Implement language switcher" description="Add a language switcher for Sanskrit/Hindi/English translations" />
+  <Action name="Add audio player" description="Implement audio player for bhajans and mantras" />
+</Actions>
+

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhajan</title>
+    <link rel="icon" type="image/png" href="/Chakra.svg">
+</head>
+<style>
+    body {
+        background-color: lightblue;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    .search-container {
+        margin: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .search-box {
+        width: 80%;
+        max-width: 500px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        outline: none;
+    }
+    .bhajans {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+        justify-content: center;
+    }
+    .bhajan-link {
+        width: 100%;
+        max-width: 700px;
+        margin: 10px;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+    .bhajan {
+        width: 100%;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease;
+        box-sizing: border-box;
+    }
+    .bhajan h1 {
+        font-size: 1.5rem;
+        margin-top: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .bhajan:hover {
+        transform: translateY(-5px);
+    }
+    .no-results {
+        width: 100%;
+        text-align: center;
+        padding: 30px;
+        font-size: 18px;
+        color: #555;
+        background-color: white;
+        border-radius: 10px;
+        margin: 20px;
+        box-sizing: border-box;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .bhajan-link {
+            max-width: 100%;
+        }
+        .bhajan {
+            padding: 15px;
+        }
+        .bhajan h1 {
+            font-size: 1.2rem;
+        }
+        .search-box {
+            width: 90%;
+            padding: 8px 12px;
+        }
+        .search-container {
+            margin: 15px 10px;
+        }
+        .bhajans {
+            margin: 10px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .bhajan {
+            padding: 12px;
+        }
+        .bhajan h1 {
+            font-size: 1.1rem;
+        }
+        .search-container {
+            margin: 10px 5px;
+        }
+        .search-box {
+            padding: 8px;
+            font-size: 14px;
+        }
+        .bhajans {
+            margin: 5px;
+        }
+        .no-results {
+            padding: 20px;
+            font-size: 16px;
+        }
+        .bhajan-link {
+            margin: 8px 5px;
+        }
+    }
+</style>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <div class="search-container">
+        <input type="text" id="search-box" class="search-box" placeholder="Search bhajans by title or lyrics...">
+    </div>
+
+    <div class="bhajans" id="bhajans-container">
+        <% bhajansData.forEach(bhajan => { %>
+            <a href="/bhajan/<%= bhajan.index %>" class="bhajan-link">
+                <div class="bhajan" data-title="<%= bhajan.title.toLowerCase() %>" data-lyrics="<%= bhajan.lyrics.toLowerCase() %>">
+                    <h1><%= bhajan.title %></h1>
+                    <!-- <p><%= bhajan.lyrics %></p> -->
+                    <!-- <iframe loading="lazy" src="<%= bhajan.youtube_video %>" frameborder="0"></iframe> -->
+                </div>
+            </a>
+        <% }); %>
+    </div>
+    
+    <%- include('../partials/footer.ejs') %>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBox = document.getElementById('search-box');
+            const bhajans = document.querySelectorAll('.bhajan-link');
+            const bhajansContainer = document.getElementById('bhajans-container');
+            let noResultsElement = null;
+            
+            // Focus search box when page loads on mobile devices (optional)
+            if (window.innerWidth <= 768) {
+                // Add a slight delay to ensure elements are fully loaded
+                setTimeout(() => {
+                    searchBox.focus();
+                }, 300);
+            }
+            
+            searchBox.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                // Remove previous "no results" message if it exists
+                if (noResultsElement) {
+                    bhajansContainer.removeChild(noResultsElement);
+                    noResultsElement = null;
+                }
+                
+                let hasResults = false;
+                
+                bhajans.forEach(bhajanLink => {
+                    const bhajan = bhajanLink.querySelector('.bhajan');
+                    const title = bhajan.getAttribute('data-title');
+                    const lyrics = bhajan.getAttribute('data-lyrics');
+                    
+                    if (searchTerm === '' || title.includes(searchTerm) || lyrics.includes(searchTerm)) {
+                        bhajanLink.style.display = 'block';
+                        hasResults = true;
+                    } else {
+                        bhajanLink.style.display = 'none';
+                    }
+                });
+                
+                // Add "no results" message if needed
+                if (!hasResults && searchTerm !== '') {
+                    noResultsElement = document.createElement('div');
+                    noResultsElement.className = 'no-results';
+                    noResultsElement.textContent = 'No bhajans found matching "' + searchTerm + '"';
+                    bhajansContainer.appendChild(noResultsElement);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
