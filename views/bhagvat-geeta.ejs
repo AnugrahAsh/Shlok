@@ -122,7 +122,7 @@
     %>
 
     <% if (prevId >= 1) { %>
-        <a href="/bhagvat-geeta/<%= prevId %>"><button class="change-btn"></button></a>
+        <a href="/bhagvat-geeta/<%= prevId %>"><button class="change-btn">Prev</button></a>
     <% } %>
 
     <% chapterData.forEach((_, index) => { %>
@@ -130,7 +130,7 @@
     <% }); %>
 
     <% if (nextId <= 18) { %>
-        <a href="/bhagvat-geeta/<%= nextId %>"><button class="change-btn">>></button></a>
+        <a href="/bhagvat-geeta/<%= nextId %>"><button class="change-btn">Next</button></a>
     <% } %>
 </div>
     </div>
